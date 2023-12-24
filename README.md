@@ -64,3 +64,13 @@ npx nx affected:graph
 
 - should contain title - Header
 - should contain header - AppComponent
+
+## Husky e Lint-Staged
+
+### Husky
+
+O Husky é uma biblioteca Node.js que possibilita a automação de tarefas antes de eventos do Git, como commits e pushes. Ele permite configurar githooks (scripts executados em determinados eventos do Git) para validar, testar ou executar qualquer outra tarefa antes que o código seja efetivamente commitado ou enviado.
+
+### Lint-Staged
+
+O Lint-Staged é uma ferramenta que trabalha em conjunto com o Husky para otimizar o processo de linting e testes em projetos versionados pelo Git. Ele permite rodar scripts apenas nos arquivos que estão sendo commitados, ao invés de executar todas as verificações no código inteiro do projeto.
