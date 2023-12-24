@@ -10,5 +10,5 @@ import { LayoutModule } from '@customer-registration/layout';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'customer-registration';
+  title = 'Cadastro de Clientes';
 }
