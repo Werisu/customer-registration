@@ -59,3 +59,8 @@ Exemplos:
 npx nx affected:test
 npx nx affected:graph
 ```
+
+## Testes
+
+- should contain title - Header
+- should contain header - AppComponent
