@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@customer-registration/customer-data-access": [
+        "modules/data-access/customer/src/index.ts"
+      ],
       "@customer-registration/layout": ["modules/feature/layout/src/index.ts"]
     }
   },
