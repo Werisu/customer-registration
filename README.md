@@ -75,3 +75,10 @@ O Husky é uma biblioteca Node.js que possibilita a automação de tarefas antes
 ### Lint-Staged
 
 O Lint-Staged é uma ferramenta que trabalha em conjunto com o Husky para otimizar o processo de linting e testes em projetos versionados pelo Git. Ele permite rodar scripts apenas nos arquivos que estão sendo commitados, ao invés de executar todas as verificações no código inteiro do projeto.
+
+### ng-bootstrap
+
+```
+npm install @ng-bootstrap/ng-bootstrap
+npx nx g @ng-bootstrap/ng-bootstrap:ng-add --project=customer-registration
+```
