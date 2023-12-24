@@ -64,6 +64,7 @@ npx nx affected:graph
 
 - should contain title - Header
 - should contain header - AppComponent
+- should return customers correctly - customer search service
 
 ## Husky e Lint-Staged
 
