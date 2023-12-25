@@ -94,3 +94,28 @@ O Lint-Staged é uma ferramenta que trabalha em conjunto com o Husky para otimiz
 npm install @ng-bootstrap/ng-bootstrap
 npx nx g @ng-bootstrap/ng-bootstrap:ng-add --project=customer-registration
 ```
+
+## Control Flow Syntax
+
+```
+<div class="row">
+      <!-- Cliente 1 -->
+      @for (customer of customers; track customer.id) {
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ customer.name }}</h5>
+            <span class="card-text">{{ customer.email }}</span>
+            <small class="text-muted"
+              >data de cadastro: {{ customer.createdAt | date }}</small
+            >
+          </div>
+        </div>
+      </div>
+      } @empty {
+      <div class="col">
+        <p class="text-center">Nenhum cliente encontrado</p>
+      </div>
+      }
+    </div>
+```
