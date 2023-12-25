@@ -5,11 +5,12 @@ import {
   OurCustomersService,
 } from '@customer-registration/customer-data-access';
 import { Observable } from 'rxjs';
+import { CustomerCardComponent } from '@customer-registration/customer-ui';
 
 @Component({
   selector: 'customer-registration-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CustomerCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

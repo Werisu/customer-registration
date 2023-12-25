@@ -5,6 +5,7 @@ import {
   mockCustomer,
 } from '@customer-registration/customer-data-access';
 import { of } from 'rxjs';
+import { CustomerCardComponent } from '@customer-registration/customer-ui';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,7 +13,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent],
+      imports: [HomeComponent, CustomerCardComponent],
       providers: [
         {
           provide: OurCustomersService,
@@ -31,8 +32,9 @@ describe('HomeComponent', () => {
   });
 
   it('should render product cards correctly', () => {
-    const cards: HTMLElement[] =
-      fixture.nativeElement.querySelectorAll('.card');
+    const cards: HTMLElement[] = fixture.nativeElement.querySelectorAll(
+      'customer-registration-customer-card'
+    );
 
     expect(cards.length).toBe(mockCustomer.length);
   });

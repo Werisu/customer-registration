@@ -78,6 +78,7 @@ npx nx affected:graph
 - 'should return customer observable correctly - customer search component
 - should redirect to "/" when logo is is clicked - header component
 - should render product cards correctly - home component
+- should render customer card info correctly - card component
 
 ## Husky e Lint-Staged
 
