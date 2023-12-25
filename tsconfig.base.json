@@ -21,6 +21,9 @@
       "@customer-registration/customer-search": [
         "modules/feature/customer/search/src/index.ts"
       ],
+      "@customer-registration/customer-ui": [
+        "modules/ui/customer/src/index.ts"
+      ],
       "@customer-registration/home": ["modules/feature/home/src/index.ts"],
       "@customer-registration/layout": ["modules/feature/layout/src/index.ts"]
     }
