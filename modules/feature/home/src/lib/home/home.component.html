@@ -4,7 +4,7 @@
 
     <div class="row">
       <!-- Cliente 1 -->
-      @for (customer of customers; track customer.id) {
+      @for (customer of customers$ | async; track customer.id) {
       <div class="col-md-6 col-lg-3 mb-4">
         <div class="card">
           <div class="card-body">

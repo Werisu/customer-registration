@@ -25,7 +25,7 @@ describe('OurCustomersService', () => {
   });
 
   it('should return our customers correctly', () => {
-    const url = `${service.apiUrl}/customer?page=1&limit=10`;
+    const url = `${service.apiUrl}/customer?page=1&limit=8`;
     let result: Customers = [];
 
     service.getCustomers().subscribe((customers) => (result = customers));

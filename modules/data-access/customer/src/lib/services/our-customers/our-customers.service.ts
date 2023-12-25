@@ -18,7 +18,7 @@ export class OurCustomersService {
     return this.http.get<Customers>(`${this.apiUrl}/customer`, {
       params: {
         page: 1,
-        limit: 10,
+        limit: 8,
       },
     });
   }

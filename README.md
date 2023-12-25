@@ -77,6 +77,7 @@ npx nx affected:graph
 - should prevent empty submissions - customer search component
 - 'should return customer observable correctly - customer search component
 - should redirect to "/" when logo is is clicked - header component
+- should render product cards correctly - home component
 
 ## Husky e Lint-Staged
 

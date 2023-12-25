@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   Customers,
-  mockCustomer,
+  OurCustomersService,
 } from '@customer-registration/customer-data-access';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'customer-registration-home',
@@ -13,6 +14,7 @@ import {
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  public customers: Customers = mockCustomer;
-  constructor() {}
+  public customers$: Observable<Customers> =
+    this.ourCustomersService.getCustomers();
+  constructor(private ourCustomersService: OurCustomersService) {}
 }
