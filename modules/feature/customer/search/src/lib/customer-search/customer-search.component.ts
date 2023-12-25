@@ -7,9 +7,11 @@ import {
   OperatorFunction,
   debounceTime,
   distinctUntilChanged,
+  filter,
   map,
+  switchMap,
 } from 'rxjs';
-import { mockCustomer } from '@customer-registration/customer-data-access';
+import { CustomerSearchService } from '@customer-registration/customer-data-access';
 
 @Component({
   selector: 'customer-registration-customer-search',
@@ -25,22 +27,20 @@ import { mockCustomer } from '@customer-registration/customer-data-access';
   styleUrl: './customer-search.component.scss',
 })
 export class CustomerSearchComponent {
-  control = new FormControl('');
+  public control = new FormControl('', { nonNullable: true });
 
+  constructor(private customerSearchService: CustomerSearchService) {}
   search: OperatorFunction<string, readonly string[]> = (
     text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      map((term) =>
-        term.length < 2
-          ? []
-          : customer
-              .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10)
+      filter((term) => term.length >= 2),
+      switchMap((term) =>
+        this.customerSearchService
+          .searchByName(term)
+          .pipe(map((c) => c.map((c) => c.name)))
       )
     );
 }
-
-const customer = mockCustomer.map((c) => c.name);
