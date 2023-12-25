@@ -36,7 +36,7 @@ export class CustomerSearchComponent {
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      filter((term) => term.length >= 2),
+      filter((term) => term.length > 0),
       switchMap((term) =>
         this.customerSearchService
           .searchByName(term)

@@ -64,12 +64,18 @@ npx nx affected:graph
 
 - Single Responsibility Principle aplicado ao Angular
 - Open Closed Principle aplicado ao Angular
+- Dependency Inversion Principle aplicado ao Angular
 
 ## Testes
 
 - should contain title - Header
 - should contain header - AppComponent
 - should return customers correctly - customer search service
+- should debounce when input field is changed - customer search component
+- should search multiple times - customer search component
+- should prevent identical submissions - customer search component
+- should prevent empty submissions - customer search component
+- 'should return customer observable correctly - customer search component
 
 ## Husky e Lint-Staged
 
