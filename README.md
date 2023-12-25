@@ -60,6 +60,11 @@ npx nx affected:test
 npx nx affected:graph
 ```
 
+### SOLID
+
+- Single Responsibility Principle aplicado ao Angular
+- Open Closed Principle aplicado ao Angular
+
 ## Testes
 
 - should contain title - Header
