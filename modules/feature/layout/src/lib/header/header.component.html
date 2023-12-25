@@ -1,8 +1,13 @@
 <header class="header">
-  <nav class="navbar navbar-expand-lg bg-light">
+  <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
       <div class="col-12 col-md-4">
-        <a class="navbar-brand" href="#">{{ title }}</a>
+        <a
+          class="navbar-brand text-white"
+          routerLink="/"
+          routerLinkActive="router-link-active"
+          >{{ title }}</a
+        >
       </div>
       <div class="d-flex gap-2 align-items-center">
         <ng-content></ng-content>

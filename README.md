@@ -76,6 +76,7 @@ npx nx affected:graph
 - should prevent identical submissions - customer search component
 - should prevent empty submissions - customer search component
 - 'should return customer observable correctly - customer search component
+- should redirect to "/" when logo is is clicked - header component
 
 ## Husky e Lint-Staged
 
