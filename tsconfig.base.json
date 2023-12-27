@@ -28,7 +28,10 @@
         "modules/ui/customer/src/index.ts"
       ],
       "@customer-registration/home": ["modules/feature/home/src/index.ts"],
-      "@customer-registration/layout": ["modules/feature/layout/src/index.ts"]
+      "@customer-registration/layout": ["modules/feature/layout/src/index.ts"],
+      "@customer-registration/register": [
+        "modules/feature/customer/register/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
