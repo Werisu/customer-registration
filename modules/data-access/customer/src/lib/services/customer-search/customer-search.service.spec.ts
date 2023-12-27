@@ -5,7 +5,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { Customers } from '../../models/customer.model';
+import { Customer, Customers } from '../../models/customer.model';
 import { mockCustomer } from '../../mocks/customer.mock';
 
 describe('CustomerSearchService', () => {
@@ -37,5 +37,18 @@ describe('CustomerSearchService', () => {
     request.flush(mockCustomer);
     expect(request.request.method).toBe('GET');
     expect(result).toEqual(mockCustomer);
+  });
+
+  it('should return customer by id correctly', () => {
+    const mockId = '123';
+    const url = `${service.apiUrl}/customer/${mockId}`;
+    let result!: Customer;
+
+    service.getById(mockId).subscribe((customer) => (result = customer));
+
+    const request = httpMock.expectOne(url);
+    request.flush(mockCustomer[0]);
+    expect(request.request.method).toBe('GET');
+    expect(result).toEqual(mockCustomer[0]);
   });
 });
