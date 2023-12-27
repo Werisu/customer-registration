@@ -2,6 +2,11 @@
   <section>
     <h2 class="text-center mb-4">Nossos Clientes</h2>
 
+    <div class="row my-2">
+      <div class="col">
+        <button class="btn btn-primary">Novo Cliente</button>
+      </div>
+    </div>
     <div class="row">
       <!-- Cliente 1 -->
       @for (customer of customers$ | async; track customer.id) {
