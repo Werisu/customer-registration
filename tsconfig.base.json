@@ -18,6 +18,9 @@
       "@customer-registration/customer-data-access": [
         "modules/data-access/customer/src/index.ts"
       ],
+      "@customer-registration/customer-detail": [
+        "modules/feature/customer/detail/src/index.ts"
+      ],
       "@customer-registration/customer-search": [
         "modules/feature/customer/search/src/index.ts"
       ],
