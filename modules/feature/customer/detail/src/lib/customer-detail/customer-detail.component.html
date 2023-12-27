@@ -1,26 +1,14 @@
-<main>
-  <section>
-    <div class="container mt-4">
-      <h1>Detalhes do cliente</h1>
-      <div class="d-none">{{ customer$ | async }}</div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">logradouro</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">{{ customer.id }}</th>
-            <td>{{ customer.name }}</td>
-            <td>{{ customer.phone }}</td>
-            <td>{{ customer.neighborhood }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<main class="container customer-detail">
+  <section class="customer-detail__section">
+    <h1>Detalhes do cliente</h1>
+    <ng-container *ngIf="customer$ | async as customer">
+      <customer-registration-customer-card
+        [customer]="customer"
+      ></customer-registration-customer-card>
+      <div class="customer-detail__info">
+        <h2>{{ customer.cpf | cpfFormat : customer.cpf.length }}</h2>
+        <button class="btn btn-primary">Editar</button>
+      </div>
+    </ng-container>
   </section>
 </main>

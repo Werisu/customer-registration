@@ -1,7 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
+import { CustomerCardComponent } from '@customer-registration/customer-ui';
+import { CpfFormatPipe } from '@customer-registration/customer-data-access';
 import {
   Customer,
   CustomerSearchService,
@@ -14,15 +16,13 @@ function getParamId(): Observable<string> {
 @Component({
   selector: 'customer-registration-customer-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CustomerCardComponent, CpfFormatPipe],
   templateUrl: './customer-detail.component.html',
   styleUrl: './customer-detail.component.scss',
 })
 export class CustomerDetailComponent {
   public customer$: Observable<Customer> = getParamId().pipe(
-    switchMap((id) => this.customerSearchService.getById(id)),
-    tap((customer) => (this.customer = customer))
+    switchMap((id) => this.customerSearchService.getById(id))
   );
-  customer!: Customer;
   constructor(private customerSearchService: CustomerSearchService) {}
 }
