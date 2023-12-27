@@ -98,7 +98,7 @@ describe('CustomerSearchComponent', () => {
   }));
 
   it('should return customers observable correctly', () => {
-    component.search(component.control.valueChanges).subscribe((customers) => {
+    component.search(of('Diana Gutmann')).subscribe((customers) => {
       expect(customers).toEqual(mockCustomer);
     });
   });

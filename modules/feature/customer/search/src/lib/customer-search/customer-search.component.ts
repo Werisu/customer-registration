@@ -5,13 +5,19 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   Observable,
   OperatorFunction,
+  catchError,
   debounceTime,
   distinctUntilChanged,
   filter,
-  map,
+  of,
   switchMap,
+  tap,
 } from 'rxjs';
-import { CustomerSearchService } from '@customer-registration/customer-data-access';
+import {
+  Customer,
+  CustomerSearchService,
+} from '@customer-registration/customer-data-access';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'customer-registration-customer-search',
@@ -27,20 +33,37 @@ import { CustomerSearchService } from '@customer-registration/customer-data-acce
   styleUrl: './customer-search.component.scss',
 })
 export class CustomerSearchComponent {
-  public control = new FormControl('', { nonNullable: true });
+  public control = new FormControl({ id: '' }, { nonNullable: true });
 
-  constructor(private customerSearchService: CustomerSearchService) {}
-  search: OperatorFunction<string, readonly string[]> = (
+  searching = false;
+  searchFailed = false;
+
+  constructor(
+    private customerSearchService: CustomerSearchService,
+    private route: Router
+  ) {}
+  search: OperatorFunction<string, readonly Customer[]> = (
     text$: Observable<string>
   ) =>
     text$.pipe(
-      debounceTime(200),
+      debounceTime(300),
       distinctUntilChanged(),
+      tap(() => (this.searching = true)),
       filter((term) => term.length > 0),
       switchMap((term) =>
-        this.customerSearchService
-          .searchByName(term)
-          .pipe(map((c) => c.map((c) => c.name)))
-      )
+        this.customerSearchService.searchByName(term).pipe(
+          tap(() => (this.searchFailed = false)),
+          catchError(() => {
+            this.searchFailed = true;
+            return of([]);
+          })
+        )
+      ),
+      tap(() => (this.searching = false))
     );
+  formatter = (x: { name: string }) => x.name;
+
+  ir() {
+    this.route.navigate(['/customer', this.control.value.id]);
+  }
 }

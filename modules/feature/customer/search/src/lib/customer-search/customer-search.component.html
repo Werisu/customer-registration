@@ -1,9 +1,36 @@
-<input
-  id="typeahead-basic"
-  aria-label="digite o cliente que você quer encontrar"
-  placeholder="Buscar cliente"
-  type="text"
-  class="form-control search"
-  [formControl]="control"
-  [ngbTypeahead]="search"
-/>
+<div class="d-flex gap-2 align-items-center">
+  @if (searching) {
+  <div>
+    <div class="spinner-grow text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  } @if (searchFailed) {
+  <div class="invalid-feedback">
+    Desculpe, não foi possível carregar as sugestões.
+  </div>
+  }
+  <div class="input-group">
+    <input
+      type="text"
+      aria-describedby="button-addon2"
+      id="typeahead-basic"
+      aria-label="digite o cliente que você quer encontrar"
+      placeholder="Buscar cliente"
+      class="form-control ps-2"
+      [formControl]="control"
+      [ngbTypeahead]="search"
+      [inputFormatter]="formatter"
+      [resultFormatter]="formatter"
+      [selectOnExact]="true"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      id="button-addon2"
+      (click)="ir()"
+    >
+      Ir
+    </button>
+  </div>
+</div>
