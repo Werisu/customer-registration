@@ -121,3 +121,9 @@ npx nx g @ng-bootstrap/ng-bootstrap:ng-add --project=customer-registration
       }
     </div>
 ```
+
+## Limites de Módulo (Module Boundaries)
+
+A abordagem de "Module Boundaries" refere-se à prática de definir fronteiras claras entre diferentes partes do nosso projeto, estabelecendo limites bem definidos entre módulos com propósitos específicos. Isso promove uma arquitetura mais organizada e facilita a manutenção do código ao longo do tempo.
+
+Utilizei o ESLint, uma ferramenta de análise estática de código, para reforçar esses limites de módulo em nosso projeto.
