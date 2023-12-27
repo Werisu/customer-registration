@@ -6,6 +6,7 @@ import {
 } from '@customer-registration/customer-data-access';
 import { of } from 'rxjs';
 import { CustomerCardComponent } from '@customer-registration/customer-ui';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,7 +14,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent, CustomerCardComponent],
+      imports: [HomeComponent, CustomerCardComponent, RouterTestingModule],
       providers: [
         {
           provide: OurCustomersService,
@@ -31,7 +32,7 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render product cards correctly', () => {
+  it('should render customer cards correctly', () => {
     const cards: HTMLElement[] = fixture.nativeElement.querySelectorAll(
       'customer-registration-customer-card'
     );

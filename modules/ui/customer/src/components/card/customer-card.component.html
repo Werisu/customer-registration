@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [routerLink]="['/customer', customer.id]">
   <div class="card-body">
     <h5 class="card-title">{{ customer.name }}</h5>
     <div class="card-text">{{ customer.email }}</div>
