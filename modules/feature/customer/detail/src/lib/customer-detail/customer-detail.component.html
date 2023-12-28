@@ -7,7 +7,21 @@
       ></customer-registration-customer-card>
       <div class="customer-detail__info">
         <h2>{{ customer.cpf | cpfFormat }}</h2>
-        <button class="btn btn-primary">Editar</button>
+        <p>Email: {{ customer.email }}</p>
+        <p>Cidade: {{ customer.city }}</p>
+        <p>Estado: {{ customer.state }}</p>
+        <p>Rua: {{ customer.street }}</p>
+        <div class="d-flex gap-2">
+          <button
+            class="btn btn-primary"
+            (click)="onEdit(customer.id, customer)"
+          >
+            Editar
+          </button>
+          <button class="btn btn-danger" (click)="onDelete(customer.id)">
+            Excluir
+          </button>
+        </div>
       </div>
     </ng-container>
   </section>
