@@ -1,0 +1,9 @@
+.customer-detail {
+  padding: 20px;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

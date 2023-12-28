@@ -1,0 +1,127 @@
+<div class="modal-header">
+  <h4 class="modal-title">Registro de cliente</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <h2>Formulário de Cadastro</h2>
+    <small *ngIf="!isSaveLocalStorage" class="text-danger">
+      Dados não persistidos
+    </small>
+    <ng-container *ngIf="subscribeLocalStorage$ | async">
+      <small *ngIf="isSaveLocalStorage" class="text-success"
+        >Dados persistidos</small
+      >
+    </ng-container>
+
+    <form class="row g-3" [formGroup]="cadastroForm" (ngSubmit)="submitForm()">
+      <!-- Informações Pessoais -->
+      <div class="col-md-6">
+        <label for="name">Nome completo:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          formControlName="name"
+          required
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="cpf">CPF</label>
+        <input
+          class="form-control"
+          type="text"
+          id="cpf"
+          formControlName="cpf"
+          required
+        />
+      </div>
+      <!-- Informações de Contato -->
+      <div class="col-md-6">
+        <label for="email">Email:</label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="phone">Número de telefone:</label>
+        <input
+          class="form-control"
+          type="tel"
+          id="phone"
+          formControlName="phone"
+        />
+      </div>
+      <!-- Endereço Residencial -->
+      <div class="col-md-6">
+        <label for="zipCode">Código Postal</label>
+        <input
+          class="form-control"
+          type="text"
+          id="zipCode"
+          customerRegistrationCepMask
+          formControlName="zipCode"
+          required
+        />
+      </div>
+      <ng-container *ngIf="zipCodeData$ | async as data">
+        <div class="col-md-6" [@fadeAnimation]>
+          <label for="street">Logradouro:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="street"
+            formControlName="street"
+            required
+          />
+        </div>
+        <div class="col-md-6" [@fadeAnimation]>
+          <label for="state">Estado:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="state"
+            formControlName="state"
+            required
+          />
+        </div>
+        <div class="col-md-6" [@fadeAnimation]>
+          <label for="city">Cidade:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="city"
+            formControlName="city"
+            required
+          />
+        </div>
+      </ng-container>
+
+      <div class="actions d-flex gap-2 mt-4">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!cadastroForm.valid"
+        >
+          Enviar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="activeModal.close('Close click')"
+        >
+          Fechar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
