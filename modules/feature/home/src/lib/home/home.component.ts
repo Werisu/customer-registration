@@ -5,7 +5,10 @@ import {
   OurCustomersService,
 } from '@customer-registration/customer-data-access';
 import { Observable } from 'rxjs';
-import { CustomerCardComponent } from '@customer-registration/customer-ui';
+import {
+  CustomerCardComponent,
+  listStateTrigger,
+} from '@customer-registration/customer-ui';
 import { NgbModalModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from '@customer-registration/register';
 import Swal from 'sweetalert2';
@@ -16,6 +19,7 @@ import Swal from 'sweetalert2';
   imports: [CommonModule, CustomerCardComponent, NgbModalModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  animations: [listStateTrigger],
 })
 export class HomeComponent {
   public customers$: Observable<Customers> =

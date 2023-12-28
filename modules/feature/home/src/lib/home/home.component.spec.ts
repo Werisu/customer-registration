@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { CustomerCardComponent } from '@customer-registration/customer-ui';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -20,6 +21,7 @@ describe('HomeComponent', () => {
         CustomerCardComponent,
         RouterTestingModule,
         NgbModalModule,
+        NoopAnimationsModule,
       ],
       providers: [
         {

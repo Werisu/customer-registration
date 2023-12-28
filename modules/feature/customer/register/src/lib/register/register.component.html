@@ -74,7 +74,7 @@
         />
       </div>
       <ng-container *ngIf="zipCodeData$ | async as data">
-        <div class="col-md-6">
+        <div class="col-md-6" [@fadeAnimation]>
           <label for="street">Logradouro:</label>
           <input
             class="form-control"
@@ -84,7 +84,7 @@
             required
           />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" [@fadeAnimation]>
           <label for="state">Estado:</label>
           <input
             class="form-control"
@@ -94,7 +94,7 @@
             required
           />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" [@fadeAnimation]>
           <label for="city">Cidade:</label>
           <input
             class="form-control"

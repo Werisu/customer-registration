@@ -14,6 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Observable, filter, map, switchMap, tap } from 'rxjs';
+import { fadeAnimation } from '@customer-registration/customer-ui';
 
 @Component({
   selector: 'customer-registration-register',
@@ -21,6 +22,7 @@ import { Observable, filter, map, switchMap, tap } from 'rxjs';
   imports: [CommonModule, ReactiveFormsModule, CepMaskDirective],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
+  animations: [fadeAnimation],
 })
 export class RegisterComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
@@ -83,7 +85,7 @@ export class RegisterComponent implements OnInit {
 
   searchZipCode() {
     this.zipCodeData$ = this.cadastroForm.controls['zipCode'].valueChanges.pipe(
-      filter((value) => value.length > 5),
+      filter((value) => value.length >= 8),
       map((value) => value.replace('-', '')),
       switchMap((value) => this.zipCodeService.getZipCode(value)),
       tap((data) => {
