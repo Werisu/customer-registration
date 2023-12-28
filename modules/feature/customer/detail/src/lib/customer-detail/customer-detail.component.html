@@ -1,0 +1,28 @@
+<main class="container customer-detail">
+  <section class="customer-detail__section">
+    <h1>Detalhes do cliente</h1>
+    <ng-container *ngIf="customer$ | async as customer">
+      <customer-registration-customer-card
+        [customer]="customer"
+      ></customer-registration-customer-card>
+      <div class="customer-detail__info">
+        <h2>{{ customer.cpf | cpfFormat }}</h2>
+        <p>Email: {{ customer.email }}</p>
+        <p>Cidade: {{ customer.city }}</p>
+        <p>Estado: {{ customer.state }}</p>
+        <p>Rua: {{ customer.street }}</p>
+        <div class="d-flex gap-2">
+          <button
+            class="btn btn-primary"
+            (click)="onEdit(customer.id, customer)"
+          >
+            Editar
+          </button>
+          <button class="btn btn-danger" (click)="onDelete(customer.id)">
+            Excluir
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </section>
+</main>
