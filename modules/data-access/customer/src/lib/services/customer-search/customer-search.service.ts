@@ -23,4 +23,12 @@ export class CustomerSearchService {
   getById(id: string): Observable<Customer> {
     return this.http.get<Customer>(`${this.apiUrl}/customer/${id}`);
   }
+
+  deleteById(id: string): Observable<Customer> {
+    return this.http.delete<Customer>(`${this.apiUrl}/customer/${id}`);
+  }
+
+  updateById(id: string, body: Customer): Observable<Customer> {
+    return this.http.put<Customer>(`${this.apiUrl}/customer/${id}`, body);
+  }
 }
