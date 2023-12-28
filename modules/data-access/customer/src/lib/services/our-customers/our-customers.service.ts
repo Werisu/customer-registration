@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customers } from '../../models/customer.model';
+import { Customer, Customers } from '../../models/customer.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -18,8 +18,12 @@ export class OurCustomersService {
     return this.http.get<Customers>(`${this.apiUrl}/customer`, {
       params: {
         page: 1,
-        limit: 8,
+        limit: 20,
       },
     });
+  }
+
+  postCustomer(body: Customer): Observable<Customer> {
+    return this.http.post<Customer>(`${this.apiUrl}/customer`, body);
   }
 }
