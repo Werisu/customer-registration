@@ -48,8 +48,8 @@ export class CustomerSearchComponent {
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      tap(() => (this.searching = true)),
       filter((term) => term.length > 0),
+      tap(() => (this.searching = true)),
       switchMap((term) =>
         this.customerSearchService.searchByName(term).pipe(
           tap(() => (this.searchFailed = false)),
