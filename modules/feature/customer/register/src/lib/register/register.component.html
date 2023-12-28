@@ -10,6 +10,14 @@
 <div class="modal-body">
   <div class="container">
     <h2>Formulário de Cadastro</h2>
+    <small *ngIf="!isSaveLocalStorage" class="text-danger">
+      Dados não persistidos
+    </small>
+    <ng-container *ngIf="subscribeLocalStorage$ | async">
+      <small *ngIf="isSaveLocalStorage" class="text-success"
+        >Dados persistidos</small
+      >
+    </ng-container>
 
     <form class="row g-3" [formGroup]="cadastroForm" (ngSubmit)="submitForm()">
       <!-- Informações Pessoais -->
@@ -23,14 +31,13 @@
           required
         />
       </div>
-
       <div class="col-md-6">
-        <label for="birthDate">Data de nascimento:</label>
+        <label for="cpf">CPF</label>
         <input
           class="form-control"
-          type="date"
-          id="birthDate"
-          formControlName="birthDate"
+          type="text"
+          id="cpf"
+          formControlName="cpf"
           required
         />
       </div>

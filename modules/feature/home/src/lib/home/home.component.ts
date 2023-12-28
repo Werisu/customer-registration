@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { CustomerCardComponent } from '@customer-registration/customer-ui';
 import { NgbModalModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from '@customer-registration/register';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'customer-registration-home',
@@ -25,6 +26,34 @@ export class HomeComponent {
   ) {}
 
   public openModal() {
-    this.ngbModal.open(RegisterComponent, { size: 'lg' });
+    const modal = this.ngbModal.open(RegisterComponent, { size: 'lg' });
+    modal.result.then((data) => {
+      if (typeof data === 'object') {
+        this.ourCustomersService.postCustomer(data).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              text: 'cadastro realizado com sucesso',
+              toast: true,
+              position: 'bottom',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+
+            this.customers$ = this.ourCustomersService.getCustomers();
+          },
+          error: () => {
+            Swal.fire({
+              icon: 'error',
+              text: 'houve um erro',
+              toast: true,
+              position: 'bottom',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+          },
+        });
+      }
+    });
   }
 }
