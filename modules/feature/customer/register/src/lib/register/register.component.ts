@@ -24,7 +24,7 @@ import { Observable, filter, map, switchMap, tap } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
-  @Input() name!: string;
+  @Input() customer!: Customer;
   cadastroForm!: FormGroup;
   zipCodeData$!: Observable<ZipCode>;
   subscribeLocalStorage$!: Observable<Customer>;
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
       // Informações de Contato
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: [''],
+      phone: [''],
 
       // Endereço Residencial
       zipCode: ['', Validators.required],
@@ -56,11 +56,25 @@ export class RegisterComponent implements OnInit {
 
     this.subscribeLocalStorage$ = this.cadastroForm.valueChanges.pipe(
       tap((data) => {
-        this.isSaveLocalStorage = false;
         this.saveLocalStorage(data);
         this.isSaveLocalStorage = true;
       })
     );
+
+    if (this.customer) {
+      this.fillOutForm();
+    }
+  }
+
+  fillOutForm() {
+    this.cadastroForm.controls['name'].setValue(this.customer.name);
+    this.cadastroForm.controls['cpf'].setValue(this.customer.cpf);
+    this.cadastroForm.controls['email'].setValue(this.customer.email);
+    this.cadastroForm.controls['phone'].setValue(this.customer.phone);
+    this.cadastroForm.controls['zipCode'].setValue(this.customer.zipCode);
+    this.cadastroForm.controls['state'].setValue(this.customer.state);
+    this.cadastroForm.controls['city'].setValue(this.customer.city);
+    this.cadastroForm.controls['street'].setValue(this.customer.street);
   }
 
   saveLocalStorage(body: Customer) {
