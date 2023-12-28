@@ -2,16 +2,22 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {
+  CepMaskDirective,
+  ZipCode,
+  ZipCodeService,
+} from '@customer-registration/customer-data-access';
+import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Observable, filter, map, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'customer-registration-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, CepMaskDirective],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -19,10 +25,12 @@ export class RegisterComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
   @Input() name!: string;
   cadastroForm!: FormGroup;
-  // TODO: pesquisar o objecto
-  // zipCodeData: any;
+  zipCodeData$!: Observable<ZipCode>;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private zipCodeService: ZipCodeService
+  ) {}
 
   ngOnInit(): void {
     this.cadastroForm = this.formBuilder.group({
@@ -41,7 +49,20 @@ export class RegisterComponent implements OnInit {
       street: ['', Validators.required],
     });
 
-    this.cadastroForm.controls['zipCode'].valueChanges.pipe();
+    this.searchZipCode();
+  }
+
+  searchZipCode() {
+    this.zipCodeData$ = this.cadastroForm.controls['zipCode'].valueChanges.pipe(
+      filter((value) => value.length > 5),
+      map((value) => value.replace('-', '')),
+      switchMap((value) => this.zipCodeService.getZipCode(value)),
+      tap((data) => {
+        this.cadastroForm.controls['state'].setValue(data.uf);
+        this.cadastroForm.controls['city'].setValue(data.localidade);
+        this.cadastroForm.controls['street'].setValue(data.logradouro);
+      })
+    );
   }
 
   submitForm() {

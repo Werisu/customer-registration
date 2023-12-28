@@ -61,20 +61,43 @@
           class="form-control"
           type="text"
           id="zipCode"
+          customerRegistrationCepMask
           formControlName="zipCode"
           required
         />
       </div>
-      <div class="col-md-6">
-        <label for="street">Logradouro:</label>
-        <input
-          class="form-control"
-          type="text"
-          id="street"
-          formControlName="street"
-          required
-        />
-      </div>
+      <ng-container *ngIf="zipCodeData$ | async as data">
+        <div class="col-md-6">
+          <label for="street">Logradouro:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="street"
+            formControlName="street"
+            required
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="state">Estado:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="state"
+            formControlName="state"
+            required
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="city">Cidade:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="city"
+            formControlName="city"
+            required
+          />
+        </div>
+      </ng-container>
 
       <div class="actions d-flex gap-2 mt-4">
         <button

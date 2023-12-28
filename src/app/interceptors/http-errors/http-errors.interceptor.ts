@@ -18,7 +18,8 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const clonedRequest = request.clone({
       setHeaders: {
-        'x-access-token': 'MEU_TOKEN',
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
     });
 
