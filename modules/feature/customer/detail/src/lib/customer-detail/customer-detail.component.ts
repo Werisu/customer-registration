@@ -56,7 +56,11 @@ export class CustomerDetailComponent {
     });
     modal.componentInstance.customer = customer;
     modal.result.then((result) => {
-      this.customer$ = this.customerSearchService.updateById(id, result);
+      if (typeof result === 'object') {
+        this.customer$ = this.customer$.pipe(
+          tap(this.customerSearchService.updateById(id, result))
+        );
+      }
     });
   }
 }
