@@ -1,1 +1,97 @@
-<p>register works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">Registro de cliente</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <h2>Formulário de Cadastro</h2>
+
+    <form class="row g-3" [formGroup]="cadastroForm" (ngSubmit)="submitForm()">
+      <!-- Informações Pessoais -->
+      <div class="col-md-6">
+        <label for="name">Nome completo:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          formControlName="name"
+          required
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="birthDate">Data de nascimento:</label>
+        <input
+          class="form-control"
+          type="date"
+          id="birthDate"
+          formControlName="birthDate"
+          required
+        />
+      </div>
+      <!-- Informações de Contato -->
+      <div class="col-md-6">
+        <label for="email">Email:</label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="phoneNumber">Número de telefone:</label>
+        <input
+          class="form-control"
+          type="tel"
+          id="phoneNumber"
+          formControlName="phoneNumber"
+        />
+      </div>
+      <!-- Endereço Residencial -->
+      <div class="col-md-6">
+        <label for="zipCode">Código Postal</label>
+        <input
+          class="form-control"
+          type="text"
+          id="zipCode"
+          formControlName="zipCode"
+          required
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="street">Logradouro:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="street"
+          formControlName="street"
+          required
+        />
+      </div>
+
+      <div class="actions d-flex gap-2 mt-4">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!cadastroForm.valid"
+        >
+          Enviar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="activeModal.close('Close click')"
+        >
+          Fechar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

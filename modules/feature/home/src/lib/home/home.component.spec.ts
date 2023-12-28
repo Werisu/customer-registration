@@ -7,6 +7,7 @@ import {
 import { of } from 'rxjs';
 import { CustomerCardComponent } from '@customer-registration/customer-ui';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -14,7 +15,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent, CustomerCardComponent, RouterTestingModule],
+      imports: [
+        HomeComponent,
+        CustomerCardComponent,
+        RouterTestingModule,
+        NgbModalModule,
+      ],
       providers: [
         {
           provide: OurCustomersService,

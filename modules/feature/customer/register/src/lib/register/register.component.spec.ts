@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -7,7 +9,8 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterComponent],
+      imports: [RegisterComponent, ReactiveFormsModule, NgbModule],
+      providers: [NgbActiveModal],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
